@@ -54,7 +54,6 @@ with db_connection:
             print("----> {}/{} finished in {}".format(name_of_project, name_of_sub_project, sub_project_time))
         df_of_repo['oss_project'] = name_of_project
         df_of_repo.to_csv(vul_common.table_csv_filename(name_of_project))
-        print("LOL")
 
         project_time = time.time() - main_start
         print("--> {} finished in {}".format(name_of_project, project_time))

@@ -12,8 +12,11 @@ if not os.path.exists('out/table'):
 if not os.path.exists('out/fold'):
     os.makedirs('out/fold')
 
+if not os.path.exists('out/evaluations'):
+    os.makedirs('out/evaluations')
+
 projects_names = ['Xen', 'Apache']
-# projects_names = ['Apache', 'Glibc', 'Kernel Linux', 'Mozilla', 'Xen']
+projects_names = ['Apache', 'Glibc', 'Kernel Linux', 'Mozilla', 'Xen']
 
 
 def table_csv_filename(project_name):

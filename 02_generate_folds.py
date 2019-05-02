@@ -9,8 +9,6 @@ import vul_common
 # n(i): Number of samples for project i
 from vul_common import number_of_folds, features_cols, label_col
 
-
-
 main_start = time.time()
 skf = StratifiedKFold(n_splits=number_of_folds, shuffle=True, random_state=vul_common.random_state)
 
