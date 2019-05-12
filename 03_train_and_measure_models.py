@@ -11,8 +11,9 @@ from sklearn.ensemble import RandomForestClassifier
 
 import vul_common
 
-rf_n_jobs = 2
-rf_n_estimators = 50
+rf_n_jobs = -1
+rf_n_estimators = 40
+rf_max_depth = None
 
 
 def calculate_tp_fp_tn_fn(confusion_matrix):
@@ -76,11 +77,12 @@ def draw_roc_graph(experiment_out_path, experiment_name, project_name, roc_metri
     plt.legend(loc="lower right")
     plt.savefig("{}/roc_{}_{}.png".format(experiment_out_path, experiment_name, project_name))
 
+
 def train_and_measure(train_samples, test_samples):
     function_time = time.time()
 
     # Create a random forest Classifier. By convention, clf means 'Classifier'
-    clf = RandomForestClassifier(n_jobs=rf_n_jobs, random_state=vul_common.random_state, n_estimators=rf_n_estimators)
+    clf = RandomForestClassifier(n_jobs=rf_n_jobs, random_state=vul_common.random_state, n_estimators=rf_n_estimators, max_depth=rf_max_depth)
 
     # Train the Classifier to take the training features and learn how they relate
     # to the training y (the species)
@@ -108,6 +110,7 @@ def train_and_measure(train_samples, test_samples):
     print("Predict probabilities took {} seconds".format(time.time() - start))
 
     fpr, tpr, thresholds = metrics.roc_curve(actual, probas_[:, 1])
+    print(scores)
     print("->Train and measure took {} seconds".format(time.time() - function_time))
 
     return scores, fpr, tpr, thresholds
@@ -141,6 +144,7 @@ parameters = {
     'number_of_folds': vul_common.number_of_folds,
     'rf_n_jobs': rf_n_jobs,
     'rf_n_estimators': rf_n_estimators,
+    'rf_max_depth' : rf_max_depth,
     'random_state': vul_common.random_state
 }
 

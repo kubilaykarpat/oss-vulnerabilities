@@ -15,7 +15,6 @@ if not os.path.exists('out/fold'):
 if not os.path.exists('out/evaluations'):
     os.makedirs('out/evaluations')
 
-projects_names = ['Xen', 'Apache']
 projects_names = ['Apache', 'Glibc', 'Kernel Linux', 'Mozilla', 'Xen']
 
 

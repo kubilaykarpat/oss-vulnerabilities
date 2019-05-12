@@ -16,8 +16,7 @@ project_dfs = {}
 project_features = {}  # <Project Name, Features of Project>
 project_labels = {}  # <Project Name, Labels of Project>
 project_fold_indexes = defaultdict(list)  # <Project Name, [(Train Fold Indexes, Test Fold Indexes)]>
-file = "out/test.csv"
-pd.read_csv(file)
+
 for project_name in vul_common.projects_names:
     filename = vul_common.table_csv_filename(project_name)
     project_df = pd.read_csv(filename)
