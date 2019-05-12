@@ -40,6 +40,12 @@ for project_name in vul_common.projects_names:
         test_of_fold = project_features[project_name].iloc[test_index, :]
         train_of_fold[label_col] = project_labels[project_name][train_index]
         test_of_fold[label_col] = project_labels[project_name][test_index]
+        if vul_common.test_vulnerability_sampling_ratio < 1:
+            test_of_fold_vulnerable = test_of_fold.loc[test_of_fold[vul_common.label_col] == 1]
+            test_of_fold_vulnerable = test_of_fold_vulnerable.sample(frac=vul_common.test_vulnerability_sampling_ratio,
+                                                                     random_state=vul_common.random_state)
+            test_of_fold_neutral = test_of_fold.loc[test_of_fold[vul_common.label_col] == 0]
+            test_of_fold = pd.concat([test_of_fold_vulnerable, test_of_fold_neutral])
         train_of_fold.to_csv(vul_common.metrics_train_fold_csv_filename(project_name, fold_no))
         test_of_fold.to_csv(vul_common.metrics_test_fold_csv_filename(project_name, fold_no))
 

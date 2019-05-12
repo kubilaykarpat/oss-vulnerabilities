@@ -42,6 +42,7 @@ def merge_dfs(dfs):
 
 
 number_of_folds = 10
+test_vulnerability_sampling_ratio = 0.1
 features_cols = ["AltCountLineCode", "CountInput", "CountLineBlank", "CountLineCodeDecl", "CountLineComment",
                  "CountLinePreprocessor", "CountPath", "CountStmt", "CountStmtEmpty", "Cyclomatic",
                  "CyclomaticStrict", "Knots", "MinEssentialKnots", "RatioCommentToCode", "AltCountLineComment",
